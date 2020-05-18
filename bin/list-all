@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+cmd="curl --silent --location"
+releases_path="https://pypi.org/pypi/pipenv/json"
+
+versions=$(eval "$cmd $releases_path" | python -c "import sys, json, pkg_resources; releases = json.load(sys.stdin)['releases']; print(' '.join(sorted(releases, key=pkg_resources.parse_version)))")
+
+echo "$versions"
