@@ -20,7 +20,7 @@ do
 #!/usr/bin/env bash
 
 source $ASDF_INSTALL_PATH/bin/activate
-$filename "$@"
+$filename "\$@"
 EOT
 
   chmod a+x $ASDF_INSTALL_PATH/asdf_bin/$filename
