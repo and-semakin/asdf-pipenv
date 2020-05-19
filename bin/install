@@ -11,4 +11,17 @@ pip install pipenv==$ASDF_INSTALL_VERSION
 
 # create directory for binaries and copy them
 mkdir $ASDF_INSTALL_PATH/asdf_bin
-cp $ASDF_INSTALL_PATH/bin/pipenv* $ASDF_INSTALL_PATH/asdf_bin/
+
+# create binaries that will activate virtualenv
+declare -a executables=("pipenv" "pipenv-resolver")
+for filename in "${executables[@]}"
+do
+  cat <<EOT >> $ASDF_INSTALL_PATH/asdf_bin/$filename
+#!/usr/bin/env bash
+
+source $ASDF_INSTALL_PATH/bin/activate
+$filename "$@"
+EOT
+
+  chmod a+x $ASDF_INSTALL_PATH/asdf_bin/$filename
+done
