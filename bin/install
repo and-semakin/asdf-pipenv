@@ -3,7 +3,7 @@
 set -e
 
 # create and activate virtual environment
-python -m venv $ASDF_INSTALL_PATH
+python -m venv --copies $ASDF_INSTALL_PATH
 source $ASDF_INSTALL_PATH/bin/activate
 
 # install pipenv inside of virtual environment
