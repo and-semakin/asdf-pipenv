@@ -2,7 +2,8 @@
 
 [![githubactions](https://github.com/and-semakin/asdf-pipenv/workflows/build/badge.svg)](https://github.com/and-semakin/asdf-pipenv/actions)
 
-[Pipenv](https://github.com/pypa/pipenv) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
+[Pipenv](https://github.com/pypa/pipenv) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager.
+Inspired by [`asdf-poetry`](https://github.com/crflynn/asdf-poetry).
 
 ## Requirements
 
