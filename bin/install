@@ -2,8 +2,15 @@
 
 set -eu
 
+. ./find-python
+
 # find 3.5+ interpreter
-python=$(./find-python)
+python=$(findPython)
+if [ -z "$python" ]
+then
+  echo "No Python 3.5 interpreter found"
+  exit 1
+fi
 
 # create and activate virtual environment
 exec $python -m venv --copies $ASDF_INSTALL_PATH

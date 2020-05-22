@@ -1,35 +1,32 @@
 #!/usr/bin/env bash
 
-set -eu
+function findPython {
+  local versionCommand="import sys; print(''.join(map(str, sys.version_info[:2])))"
 
-versionCommand="import sys; print(''.join(map(str, sys.version_info[:2])))"
+  # python3 is preferred
+  local python3Version=$(python3 -c "${versionCommand}" 2>&1 | grep -Po '^(\d+)$' || true)
+  local pythonVersion=$(python -c "${versionCommand}" 2>&1 | grep -Po '^(\d+)$' || true)
 
-# python3 is preferred
-python3Version=$(python3 -c "${versionCommand}" 2>&1 | grep -Po '^(\d+)$' || true)
-pythonVersion=$(python -c "${versionCommand}" 2>&1 | grep -Po '^(\d+)$' || true)
-
-if [[ ! -z "$python3Version" ]]
-then
-  # check python3 version
-  if [[ "$python3Version" -gt "35" ]]
+  if [[ ! -z "$python3Version" ]]
   then
-    # use python3
-    echo python3
-    exit 0
-  fi
-else
-  # fallback to python
-  if [[ ! -z "$pythonVersion" ]]
-  then
-    # check python version
-    if [[ "$pythonVersion" -gt "35" ]]
+    # check python3 version
+    if [[ "$python3Version" -gt "35" ]]
     then
-      # use python
-      echo python
-      exit 0
+      # use python3
+      echo python3
+      return 0
+    fi
+  else
+    # fallback to python
+    if [[ ! -z "$pythonVersion" ]]
+    then
+      # check python version
+      if [[ "$pythonVersion" -gt "35" ]]
+      then
+        # use python
+        echo python
+        return 0
+      fi
     fi
   fi
-fi
-
-echo "No Python 3.5 or newer interpreter found!"
-exit 1
+}
