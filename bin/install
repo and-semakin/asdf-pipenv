@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
+
+# find 3.5+ interpreter
+python=$(./find-python)
 
 # create and activate virtual environment
-python -m venv --copies $ASDF_INSTALL_PATH
+exec $python -m venv --copies $ASDF_INSTALL_PATH
 source $ASDF_INSTALL_PATH/bin/activate
 
 # install pipenv inside of virtual environment
