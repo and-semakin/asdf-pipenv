@@ -21,6 +21,13 @@ jobs:
           pip -V
           pip3 -V
 
+      - name: fix_locales
+        # https://stackoverflow.com/a/39539571/10650942
+        run: |
+          export LC_ALL="en_US.UTF-8"
+          export LC_CTYPE="en_US.UTF-8"
+          sudo dpkg-reconfigure locales
+
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@v1.0.0
         with:
