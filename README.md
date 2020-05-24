@@ -8,7 +8,7 @@ Inspired by [`asdf-poetry`](https://github.com/crflynn/asdf-poetry).
 ## Requirements
 
 * `curl`;
-* `python` (version 3.5 or newer).
+* `python` (version 3.4 or newer).
 
 ## Limitations
 
