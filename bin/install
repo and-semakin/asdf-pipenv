@@ -2,18 +2,14 @@
 
 set -eu
 
-. ./find-python
-
-# find 3.5+ interpreter
-python=$(findPython)
-if [ -z "$python" ]
-then
-  echo "No Python 3.5 interpreter found"
-  exit 1
+PYTHON_REF=$(source ./check-python) # change path if necessary
+if [[ "$PYTHON_REF" == "NoPython" ]]; then
+    echo "Python3.4+ is not installed."
+    exit
 fi
 
 # create and activate virtual environment
-exec $python -m venv --copies $ASDF_INSTALL_PATH
+exec $PYTHON_REF -m venv --copies $ASDF_INSTALL_PATH
 source $ASDF_INSTALL_PATH/bin/activate
 
 # install pipenv inside of virtual environment

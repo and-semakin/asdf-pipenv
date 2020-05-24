@@ -2,19 +2,9 @@
 
 set -eu
 
-. ./find-python
-
 cmd="curl --silent --location"
 releases_path="https://pypi.org/pypi/pipenv/json"
 
-# find 3.5+ interpreter
-python=$(findPython)
-if [ -z "$python" ]
-then
-  echo "No Python 3.5 interpreter found"
-  exit 1
-fi
-
-versions=$(eval "$cmd $releases_path" | exec $python -c "import sys, json, pkg_resources; releases = json.load(sys.stdin)['releases']; print(' '.join(sorted(releases, key=pkg_resources.parse_version)))")
+versions=$(eval "$cmd $releases_path" | exec python -c "import sys, json, pkg_resources; releases = json.load(sys.stdin)['releases']; print(' '.join(sorted(releases, key=pkg_resources.parse_version)))")
 
 echo "$versions"
