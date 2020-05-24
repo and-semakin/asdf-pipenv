@@ -21,13 +21,6 @@ jobs:
           pip -V
           pip3 -V
 
-      - name: fix_locales
-        # https://stackoverflow.com/a/39539571/10650942
-        run: |
-          export LC_ALL="en_US.UTF-8"
-          export LC_CTYPE="en_US.UTF-8"
-          sudo dpkg-reconfigure locales
-
       - name: fix_python3_venv
         run: sudo apt-get update && sudo apt-get install python3-venv
 
