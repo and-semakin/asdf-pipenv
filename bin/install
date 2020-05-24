@@ -11,7 +11,7 @@ if [[ "$PYTHON_REF" == "NoPython" ]]; then
 fi
 
 # create and activate virtual environment
-eval $PYTHON_REF -m venv --copies $ASDF_INSTALL_PATH
+$PYTHON_REF -m venv --copies $ASDF_INSTALL_PATH
 source $ASDF_INSTALL_PATH/bin/activate
 
 # install pipenv inside of virtual environment
