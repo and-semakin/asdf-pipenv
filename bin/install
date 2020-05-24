@@ -2,7 +2,9 @@
 
 set -eu
 
-PYTHON_REF=$(source ./check-python) # change path if necessary
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+PYTHON_REF=$(source ${__dir}/check-python)
 if [[ "$PYTHON_REF" == "NoPython" ]]; then
     echo "Python3.4+ is not installed."
     exit
