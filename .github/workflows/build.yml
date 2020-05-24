@@ -28,6 +28,9 @@ jobs:
           export LC_CTYPE="en_US.UTF-8"
           sudo dpkg-reconfigure locales
 
+      - name: fix_python3_venv
+        run: sudo apt-get update && sudo apt-get install python3-venv
+
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@v1.0.0
         with:
